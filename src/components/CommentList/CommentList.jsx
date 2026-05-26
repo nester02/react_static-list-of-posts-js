@@ -1,9 +1,11 @@
 import { CommentInfo } from '../CommentInfo/CommentInfo';
 
-export const CommentList = () => (
+export const CommentList = ({ comments }) => (
   <div className="CommentList">
     <div className="CommentList">
-      <CommentInfo />
+      {comments.map(comment => (
+        <CommentInfo key={comment.id} comment={comment} />
+      ))}
     </div>
   </div>
 );

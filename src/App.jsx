@@ -6,21 +6,15 @@ import commentsFromServer from './api/comments.json';
 import usersFromServer from './api/users.json';
 
 export const posts = postsFromServer.map(post => ({
+  user: usersFromServer.find(user => user.id === post.userId),
+  comments: commentsFromServer.filter(comment => comment.postId === post.id),
   ...post,
-}));
-
-export const users = usersFromServer.map(user => ({
-  ...user,
-}));
-
-export const comments = commentsFromServer.map(comment => ({
-  ...comment,
 }));
 
 export const App = () => (
   <section className="App">
     <h1 className="App__title">Static list of posts</h1>
 
-    <PostList />
+    <PostList posts={posts} />
   </section>
 );

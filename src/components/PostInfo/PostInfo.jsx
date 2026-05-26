@@ -1,51 +1,26 @@
 import { CommentList } from '../CommentList/CommentList';
+import { UserInfo } from '../UserInfo/UserInfo';
 
-export const PostInfo = () => (
-  <>
-    <div className="PostInfo">
-      <div className="PostInfo__header">
-        <h3 className="PostInfo__title">qui est esse</h3>
+export const PostInfo = ({ post }) => (
+  <div className="PostInfo">
+    <div className="PostInfo__header">
+      <h3 className="PostInfo__title">{post.title}</h3>
 
-        <p>
-          {' Posted by  '}
+      <p>
+        {' Posted by  '}
 
-          <a className="UserInfo" href="mailto:Sincere@april.biz">
-            Leanne Graham
-          </a>
-        </p>
-      </div>
-
-      <p className="PostInfo__body">
-        est rerum tempore vitae sequi sint nihil reprehenderit dolor beatae ea
-        dolores neque fugiat blanditiis voluptate porro vel nihil molestiae ut
-        reiciendis qui aperiam non debitis possimus qui neque nisi nulla
+        <UserInfo user={post.user} />
       </p>
+    </div>
 
-      <hr />
-
+    <p className="PostInfo__body">{post.body}</p>
+    {post.comments.length > 0 ? (
+      <>
+        <h4 className="PostInfo__comments-title">Comments:</h4>
+        <CommentList comments={post.comments} />
+      </>
+    ) : (
       <b data-cy="NoCommentsMessage">No comments yet</b>
-    </div>
-
-    <div className="PostInfo">
-      <div className="PostInfo__header">
-        <h3 className="PostInfo__title">doloremque illum aliquid sunt</h3>
-
-        <p>
-          {' Posted by  '}
-
-          <a className="UserInfo" href="mailto:Julianne.OConner@kory.org">
-            Patricia Lebsack
-          </a>
-        </p>
-      </div>
-
-      <p className="PostInfo__body">
-        deserunt eos nobis asperiores et hic est debitis repellat molestiae
-        optio nihil ratione ut eos beatae quibusdam distinctio maiores earum
-        voluptates et aut adipisci ea maiores voluptas maxime
-      </p>
-
-      <CommentList />
-    </div>
-  </>
+    )}
+  </div>
 );
